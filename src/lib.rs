@@ -1,8 +1,8 @@
 use pyo3::prelude::*;
 
-#[pyclass]
+#[pyclass(module = "calc")]
 struct NewInt {
-    number: i32
+    number: i32,
 }
 
 #[pymethods]
@@ -10,30 +10,30 @@ impl NewInt {
     #[new]
     #[pyo3(text_signature = "(number: int) -> None")]
     fn new(number: i32) -> Self {
-        Self {number}
+        Self { number }
     }
 
     #[pyo3(text_signature = "($self, second_number: int) -> int")]
     fn mul(&mut self, second_number: i32) -> PyResult<i32> {
-        self.number *= second_number;
+        self.number = self.number.wrapping_mul(second_number);
         Ok(self.number)
     }
 
     #[pyo3(text_signature = "($self, second_number: int) -> int")]
     fn add(&mut self, second_number: i32) -> PyResult<i32> {
-        self.number += second_number;
+        self.number = self.number.wrapping_add(second_number);
         Ok(self.number)
     }
-    
+
     #[pyo3(text_signature = "($self) -> int")]
     fn get_number(&self) -> PyResult<i32> {
         Ok(self.number)
     }
 }
 
-#[pyclass]
+#[pyclass(module = "calc")]
 struct NewFloat {
-    number: f64
+    number: f64,
 }
 
 #[pymethods]
@@ -41,7 +41,7 @@ impl NewFloat {
     #[new]
     #[pyo3(text_signature = "(number: float) -> None")]
     fn new(number: f64) -> Self {
-        Self {number}
+        Self { number }
     }
 
     #[pyo3(text_signature = "($self, second_number: float) -> float")]

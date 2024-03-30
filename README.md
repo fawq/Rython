@@ -10,9 +10,11 @@ fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
 }
 ```
 
-## Add .pyi stubgen using mypy
+## Add .pyi file using mypy
 
-In bash type:
+Keep in mind that is only works for ```#[pyfunction]```. Macros like ```#[pyclass]``` and ```#[pymethods]``` are still unsupported.
+
+For autocompletion .pyi in bash type:
 
 ``` bash
 stubgen -p rython.calc -o python
