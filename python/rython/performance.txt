@@ -1,0 +1,8 @@
+NUMBER_OF_LOOPS = 3 * 10**7
+
+Loop time for NewInt basic methods add and mul: 4.963860595000028
+Loop time for python int basic methods add and mul: 3.0941988540000693
+Loop time for NewInt method with loop in rust: 0.028557854000041516
+Loop time for NewFloat basic methods add and mul: 6.610641532000045
+Loop time for python float basic methods add and mul: 4.162179528000024
+Loop time for NewFloat method with loop in rust: 0.057544244000041544
