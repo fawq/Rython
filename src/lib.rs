@@ -25,6 +25,15 @@ impl NewInt {
         Ok(self.number)
     }
 
+    #[pyo3(text_signature = "($self, number_of_loops: int, add_number: int, mul_number: int) -> int")]
+    fn loop_add_mul_seq(&mut self, number_of_loops: i32, add_number: i32, mul_number: i32) -> PyResult<i32> {
+        for _ in 0..number_of_loops {
+            self.number = self.number.wrapping_add(add_number);
+            self.number = self.number.wrapping_mul(mul_number);
+        }
+        Ok(self.number)
+    }
+
     #[pyo3(text_signature = "($self) -> int")]
     fn get_number(&self) -> PyResult<i32> {
         Ok(self.number)
@@ -53,6 +62,15 @@ impl NewFloat {
     #[pyo3(text_signature = "($self, second_number: float) -> float")]
     fn add(&mut self, second_number: f64) -> PyResult<f64> {
         self.number += second_number;
+        Ok(self.number)
+    }
+
+    #[pyo3(text_signature = "($self, number_of_loops: int, add_number: float, mul_number: float) -> float")]
+    fn loop_add_mul_seq(&mut self, number_of_loops: i32, add_number: f64, mul_number: f64) -> PyResult<f64> {
+        for _ in 0..number_of_loops {
+            self.number += add_number;
+            self.number *= mul_number;
+        }
         Ok(self.number)
     }
 
