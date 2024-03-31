@@ -87,7 +87,7 @@ fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
 }
 
 #[pymodule]
-fn calc(_py: Python, m: &PyModule) -> PyResult<()> {
+fn rython_calc(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<NewInt>()?;
     m.add_class::<NewFloat>()?;
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;

@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "rython-main"
-version = "0.3.0"
+name = "rython-calc"
+version = "0.4.0"
 description = "Rython package to test python and rust compatibility"
 authors = ["Krystian Krakowski <kkrakowski22@gmail.com>"]
 readme = "README.md"
@@ -18,7 +18,7 @@ requires = ["maturin>=1.5,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "calc"
+name = "rython_calc"
 requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Rust",
@@ -42,5 +42,5 @@ Source = "https://github.com/fawq/Rython"
 features = ["pyo3/extension-module"]
 python-source = "python"
 bindings = "pyo3"
-module-name = "rython.calc"
+module-name = "rython.rython_calc"
 strip = true
