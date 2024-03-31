@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rython-main"
-version = "0.1.0"
+version = "0.2.0"
 description = "Rython package to test python and rust compatibility"
 authors = ["Krystian Krakowski <kkrakowski22@gmail.com>"]
 readme = "README.md"
