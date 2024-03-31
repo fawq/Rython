@@ -25,7 +25,18 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dynamic = ["version"]
+authors = [
+    {name = "Krystian Krakowski", email = "kkrakowski22@gmail.com"}
+]
+dynamic = [
+    "license",
+    "readme",
+    "version"
+]
+
+[project.urls]
+Homepage = "https://github.com/fawq/Rython"
+Source = "https://github.com/fawq/Rython"
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
