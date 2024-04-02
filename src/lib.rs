@@ -5,11 +5,17 @@ struct NewInt {
     number: i32,
 }
 
+fn wrap(obj: &Bound<'_, PyAny>) -> PyResult<i32> {
+    let val = obj.call_method1("__and__", (0xFFFFFFFF_u32,))?;
+    let val: u32 = val.extract()?;
+    Ok(val as i32)
+}
+
 #[pymethods]
 impl NewInt {
     #[new]
     #[pyo3(text_signature = "(number: int) -> None")]
-    fn new(number: i32) -> Self {
+    fn new(#[pyo3(from_py_with = "wrap")] number: i32) -> Self {
         Self { number }
     }
 
@@ -87,7 +93,7 @@ fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
 }
 
 #[pymodule]
-fn rython_calc(_py: Python, m: &PyModule) -> PyResult<()> {
+fn rython_calc(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<NewInt>()?;
     m.add_class::<NewFloat>()?;
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;

@@ -21,8 +21,8 @@ if __name__ == "__main__":
     print(f"Loop time for python int basic methods add and mul: {t2_stop - t2_start}")
 
     t3_start = perf_counter()
-    new_int: rython_calc.NewInt = rython_calc.NewInt(1)
-    new_int.loop_add_mul_seq(NUMBER_OF_LOOPS, 0, 1)
+    new_int_2: rython_calc.NewInt = rython_calc.NewInt(1)
+    new_int_2.loop_add_mul_seq(NUMBER_OF_LOOPS, 0, 1)
     t3_stop = perf_counter()
     print(f"Loop time for NewInt method with loop in rust: {t3_stop - t3_start}")
 
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     print(f"Loop time for python float basic methods add and mul: {t5_stop - t5_start}")
 
     t6_start = perf_counter()
-    new_float: rython_calc.NewFloat = rython_calc.NewFloat(1.0)
-    new_float.loop_add_mul_seq(NUMBER_OF_LOOPS, 0.0, 1.0)
+    new_float_2: rython_calc.NewFloat = rython_calc.NewFloat(1.0)
+    new_float_2.loop_add_mul_seq(NUMBER_OF_LOOPS, 0.0, 1.0)
     t6_stop = perf_counter()
     print(f"Loop time for NewFloat method with loop in rust: {t6_stop - t6_start}")
