@@ -14,6 +14,30 @@ permissions:
   contents: read
 
 jobs:
+  test_python:
+    runs-on: ${{ matrix.platform.runner }}
+    strategy:
+      matrix:
+        platform:
+          - runner: ubuntu-latest
+            target: x86_64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python - -y
+      - name: Update PATH
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Install poetry dependencies
+        run: poetry install --sync
+      - name: Run pytest
+        run: pytest
+      - name: Run mypy
+        run: mypy . 
+
   linux:
     runs-on: ${{ matrix.platform.runner }}
     strategy:
@@ -31,6 +55,7 @@ jobs:
             target: s390x
           - runner: ubuntu-latest
             target: ppc64le
+    needs: [test_python]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -58,6 +83,7 @@ jobs:
             target: x64
           - runner: windows-latest
             target: x86
+    needs: [test_python]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -85,6 +111,7 @@ jobs:
             target: x86_64
           - runner: macos-14
             target: aarch64
+    needs: [test_python]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -104,6 +131,7 @@ jobs:
 
   sdist:
     runs-on: ubuntu-latest
+    needs: [test_python]
     steps:
       - uses: actions/checkout@v4
       - name: Build sdist

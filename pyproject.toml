@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "rython-calc"
-version = "0.4.1"
+version = "0.4.2"
 description = "Rython package to test python and rust compatibility"
 authors = ["Krystian Krakowski <kkrakowski22@gmail.com>"]
 readme = "README.md"
+license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.12"
