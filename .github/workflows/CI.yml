@@ -26,17 +26,31 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install Poetry
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2
+      - name: Setup a local virtual environment (if no poetry.toml file)
         run: |
-          curl -sSL https://install.python-poetry.org | python - -y
-      - name: Update PATH
-        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
-      - name: Install poetry dependencies
-        run: poetry install --sync
-      - name: Run pytest
-        run: pytest
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+      - name: Install the project dependencies
+        run: poetry install --no-root
+      - name: Develop wheels
+        uses: PyO3/maturin-action@v1
+        with:
+          target: ${{ matrix.platform.target }}
+          command: develop
+          args: --release
+          sccache: 'true'
+          manylinux: auto
+      - name: Run the automated tests
+        run: poetry run pytest -v
       - name: Run mypy
-        run: mypy . 
+        run: poetry run mypy .
 
   linux:
     runs-on: ${{ matrix.platform.runner }}
