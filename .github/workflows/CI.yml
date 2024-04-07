@@ -165,6 +165,7 @@ jobs:
     environment: release
     permissions:
       id-token: write
+      contents: write
     if: startsWith(github.ref, 'refs/tags/')
     needs: [linux, windows, macos, sdist]
     steps:
