@@ -1,4 +1,5 @@
 from time import perf_counter
+
 from rython import rython_calc
 
 if __name__ == "__main__":

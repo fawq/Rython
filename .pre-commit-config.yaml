@@ -1,0 +1,41 @@
+fail_fast: true
+repos:
+- repo: local
+  hooks:
+    - id: black
+      name: black
+      entry: poetry run black
+      language: system
+      types: [file, python]
+    - id: isort
+      name: isort
+      entry: poetry run isort
+      language: system
+      types: [file, python]
+    - id: mypy
+      name: mypy
+      entry: poetry run mypy
+      language: system
+      types: [file, python]
+    - id: fmt
+      name: fmt
+      description: Format files with cargo fmt.
+      entry: cargo fmt
+      language: system
+      types: [rust]
+      args: ["--"]
+    - id: cargo-check
+      name: cargo check
+      description: Check the package for errors.
+      entry: cargo check
+      language: system
+      types: [rust]
+      pass_filenames: false
+    - id: clippy
+      name: clippy
+      description: Lint rust sources
+      entry: cargo clippy
+      language: system
+      args: ["--", "-D", "warnings"]
+      types: [rust]
+      pass_filenames: false
