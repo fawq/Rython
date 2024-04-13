@@ -12,3 +12,8 @@ repos:
       entry: poetry run isort
       language: system
       types: [file, python]
+    - id: mypy
+      name: mypy
+      entry: poetry run mypy
+      language: system
+      types: [file, python]
