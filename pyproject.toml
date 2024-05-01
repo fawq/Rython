@@ -5,7 +5,7 @@ build-backend = "maturin"
 [project]
 name = "rython_calc"
 requires-python = ">=3.12"
-version = "0.4.8"
+version = "0.4.9"
 description = "Small project developed by me to learn PyO3 library."
 authors = [
     {name = "Krystian Krakowski", email = "kkrakowski22@gmail.com"}
@@ -35,7 +35,7 @@ strip = true
 
 [tool.poetry]
 name = "rython_calc"
-version = "0.4.8"
+version = "0.4.9"
 description = "Small project developed by me to learn PyO3 library."
 authors = ["Krystian Krakowski <kkrakowski22@gmail.com>"]
 maintainers = ["Krystian Krakowski <kkrakowski22@gmail.com>"]
@@ -53,10 +53,10 @@ python = "^3.12"
 
 [tool.poetry.group.dev.dependencies]
 maturin = "^1.5.1"
-pytest = "^8.1.1"
-mypy = "^1.9.0"
+pytest = "^8.2.0"
+mypy = "^1.10.0"
 isort = "^5.13.2"
-black = "^24.4.0"
+black = "^24.4.2"
 pre-commit = "^3.7.0"
 
 [tool.isort]
