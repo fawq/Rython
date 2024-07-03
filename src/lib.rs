@@ -1,4 +1,5 @@
 use pyo3::prelude::*;
+use cached::proc_macro::cached;
 
 #[pyclass(module = "calc")]
 struct NewInt {
@@ -106,10 +107,26 @@ fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
     Ok((a + b).to_string())
 }
 
+#[pyfunction]
+#[pyo3(text_signature = "(index: int, modulo: int) -> int")]
+#[cached]
+fn fib_mod(#[pyo3(from_py_with = "wrap")] index: i32, modulo: i32) -> i32 {
+    if index == 0 {
+        0
+    }
+    else if index == 1 {
+        1
+    }
+    else {
+        (fib_mod(index-1, modulo) + fib_mod(index-2, modulo)) % modulo
+    }
+}
+
 #[pymodule]
 fn rython_calc(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<NewInt>()?;
     m.add_class::<NewFloat>()?;
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
+    m.add_function(wrap_pyfunction!(fib_mod, m)?)?;
     Ok(())
 }
