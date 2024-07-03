@@ -1,7 +1,8 @@
 from time import perf_counter
 
 from rython import rython_calc
-from utility import fib_mod_py
+
+from .utility import fib_mod_py
 
 if __name__ == "__main__":
     NUMBER_OF_LOOPS = 3 * 10**7
@@ -53,9 +54,13 @@ if __name__ == "__main__":
     fib_mod_rust_start = perf_counter()
     fib_mod: int = rython_calc.fib_mod(750, 10)
     fib_mod_rust_stop = perf_counter()
-    print(f"Loop time for Fibbanaci modulo (result: {fib_mod}) method with loop in rust: {fib_mod_rust_stop - fib_mod_rust_start}")
+    print(
+        f"Loop time for Fibbanaci modulo (result: {fib_mod}) method with loop in rust: {fib_mod_rust_stop - fib_mod_rust_start}"
+    )
 
     fib_mod_py_start = perf_counter()
-    fib_mod: int = fib_mod_py(750, 10)
+    fib_mod_2: int = fib_mod_py(750, 10)
     fib_mod_py_stop = perf_counter()
-    print(f"Loop time for Fibbanaci modulo python (result: {fib_mod}) method with loop in rust: {fib_mod_py_stop - fib_mod_py_start}")
+    print(
+        f"Loop time for Fibbanaci modulo python (result: {fib_mod_2}) method with loop in rust: {fib_mod_py_stop - fib_mod_py_start}"
+    )

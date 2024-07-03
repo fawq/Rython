@@ -8,4 +8,4 @@ def fib_mod_py(index: int, modulo: int) -> int:
     elif index == 1:
         return 1
     else:
-        return (fib_mod_py(index-1, modulo) + fib_mod_py(index-2, modulo)) % modulo
+        return (fib_mod_py(index - 1, modulo) + fib_mod_py(index - 2, modulo)) % modulo

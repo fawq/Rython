@@ -1,5 +1,5 @@
-use pyo3::prelude::*;
 use cached::proc_macro::cached;
+use pyo3::prelude::*;
 
 #[pyclass(module = "calc")]
 struct NewInt {
@@ -113,12 +113,10 @@ fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
 fn fib_mod(#[pyo3(from_py_with = "wrap")] index: i32, modulo: i32) -> i32 {
     if index == 0 {
         0
-    }
-    else if index == 1 {
+    } else if index == 1 {
         1
-    }
-    else {
-        (fib_mod(index-1, modulo) + fib_mod(index-2, modulo)) % modulo
+    } else {
+        (fib_mod(index - 1, modulo) + fib_mod(index - 2, modulo)) % modulo
     }
 }
 

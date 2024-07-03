@@ -12,5 +12,6 @@ def test_overflow_int():
     overflow_int = rython_calc.NewInt(overflow)
     assert -overflow == overflow_int.get_number()
 
+
 def test_fib_mod():
     assert rython_calc.fib_mod(6, 5) == 3
