@@ -1,5 +1,11 @@
 # Rython
 
+## To build local package use
+
+``` bash
+maturin develop --release
+```
+
 ## Use text_signature to create python type
 
 ``` rust
