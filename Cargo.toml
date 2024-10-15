@@ -9,7 +9,7 @@ name = "rython_calc"
 crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = "0.22.3"
+pyo3 = "0.22.4"
 cached = "0.53.1"
 
 [profile.release]
