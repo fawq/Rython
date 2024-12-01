@@ -10,7 +10,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 pyo3 = "0.22.5"
-cached = "0.53.1"
+cached = "0.54.0"
 
 [profile.release]
 lto = true
